@@ -1,0 +1,6 @@
+{
+  "name": "ODOP Hub",
+  "description": "Discover the Heritage of India. Explore ODOP, GI-tagged crafts, regional traditions, and artisan stories across every district of India.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
