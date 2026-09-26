@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Compass, MapPin, BookOpen, Info, Search, Sparkles, Building2, Scale, Users, Mail, Heart, ChevronDown, ArrowRight, ShieldCheck, Layers, Award } from 'lucide-react';
+import { Menu, X, Compass, MapPin, BookOpen, Info, Search, Sparkles, Building2, Scale, Users, Mail, Heart, ChevronDown, ArrowRight, ShieldCheck, Layers, Award, Facebook, Instagram } from 'lucide-react';
 import { DpiitDropdownMenu } from './DpiitDropdownMenu';
 
 interface NavbarProps {
@@ -108,7 +108,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-[#4A3E34] hover:text-[#2C241E] hover:bg-[#F4EDE2]/60'
               }`}
             >
-              States
+              Explore by State
+            </button>
+
+            <button
+              id="nav-traditional-arts"
+              onClick={() => handleNavClick('traditional-arts')}
+              className={`px-3 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors ${
+                currentView === 'traditional-arts'
+                  ? 'text-[#B8502E] bg-[#F4EDE2]'
+                  : 'text-[#4A3E34] hover:text-[#2C241E] hover:bg-[#F4EDE2]/60'
+              }`}
+            >
+              Traditional Arts
             </button>
 
             <button
@@ -209,6 +221,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <Mail className="w-3.5 h-3.5 text-[#246243]" />
                     <span>Let’s Connect</span>
+                  </button>
+                  <div className="my-1 border-t border-[#F0EAE1]" />
+                  <button
+                    onClick={() => handleNavClick('seller-partner')}
+                    className="w-full text-left px-4 py-2 text-xs text-[#5C4C3E] hover:text-[#B8502E] hover:bg-[#FAF6F0] flex items-center gap-2 font-medium"
+                  >
+                    <Building2 className="w-3.5 h-3.5 text-[#B8502E]" />
+                    <span>Become a Seller Partner</span>
                   </button>
                 </div>
               )}
@@ -323,7 +343,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-xs bg-[#E8DFD3] px-2 py-0.5 rounded text-[#705D4D]">All Crafts</span>
             </button>
 
-            {/* 3. States */}
+            {/* 3. Explore by State */}
             <button
               id="mobile-nav-states"
               onClick={() => handleNavClick('states')}
@@ -333,9 +353,24 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <span className="flex items-center gap-2.5">
                 <MapPin className="w-4 h-4 text-[#B8502E]" />
-                States
+                Explore by State
               </span>
-              <span className="text-xs text-[#8C7662]">28 States &amp; 8 UTs</span>
+              <ArrowRight className="w-4 h-4 text-[#8C7662]" />
+            </button>
+
+            {/* 4. Traditional Arts */}
+            <button
+              id="mobile-nav-traditional-arts"
+              onClick={() => handleNavClick('traditional-arts')}
+              className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium flex items-center justify-between transition-colors ${
+                currentView === 'traditional-arts' ? 'bg-[#F2E8DC] text-[#B8502E] font-semibold' : 'text-[#3E342B] hover:bg-[#F5EFE6]'
+              }`}
+            >
+              <span className="flex items-center gap-2.5">
+                <Layers className="w-4 h-4 text-[#B8502E]" />
+                Traditional Arts
+              </span>
+              <ArrowRight className="w-4 h-4 text-[#8C7662]" />
             </button>
 
             {/* 4. ODOP Products */}
@@ -419,6 +454,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="text-xs text-[#8C7662]">Artisans</span>
             </button>
 
+            {/* 8. Become a Seller Partner */}
+            <button
+              id="mobile-nav-seller-partner"
+              onClick={() => handleNavClick('seller-partner')}
+              className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium flex items-center justify-between transition-colors ${
+                currentView === 'seller-partner' ? 'bg-[#F2E8DC] text-[#B8502E] font-semibold' : 'text-[#3E342B] hover:bg-[#F5EFE6]'
+              }`}
+            >
+              <span className="flex items-center gap-2.5">
+                <Building2 className="w-4 h-4 text-[#B8502E]" />
+                Become a Seller Partner
+              </span>
+              <span className="text-[10px] bg-[#EFE3D5] text-[#8C4A27] px-2 py-0.5 rounded font-bold uppercase">
+                Join
+              </span>
+            </button>
+
             {/* 8. About ODOP Hub (Expandable Section with 3 sub-items) */}
             <div className="pt-2">
               <div className="rounded-xl border border-[#E7DDD0] bg-[#F7F2EA] overflow-hidden">
@@ -487,7 +539,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </nav>
 
-          <div className="mt-4 pt-3 border-t border-[#EAE2D5]">
+          <div className="mt-4 pt-3 border-t border-[#EAE2D5] space-y-2">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
@@ -498,6 +550,32 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Sparkles className="w-4 h-4 text-[#B8502E]" />
               <span>What is ODOP &amp; GI Tag?</span>
             </button>
+
+            {/* Social channels in mobile drawer */}
+            <div className="flex items-center justify-center gap-2 pt-1">
+              <a
+                id="mobile-drawer-facebook"
+                href="https://www.facebook.com/share/19rtRNyFxM/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow ODOP Hub on Facebook"
+                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#EFE9DE] hover:bg-[#E2D8C9] text-xs font-medium text-[#1877F2] transition-colors"
+              >
+                <Facebook className="w-3.5 h-3.5 fill-current" />
+                <span>Facebook</span>
+              </a>
+              <a
+                id="mobile-drawer-instagram"
+                href="https://www.instagram.com/odophub/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow ODOPHUB on Instagram (@odophub)"
+                className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#EFE9DE] hover:bg-[#E2D8C9] text-xs font-medium text-[#E1306C] transition-colors"
+              >
+                <Instagram className="w-3.5 h-3.5" />
+                <span>ODOPHUB (@odophub)</span>
+              </a>
+            </div>
           </div>
         </div>
       )}

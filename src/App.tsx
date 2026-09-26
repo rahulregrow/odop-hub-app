@@ -16,6 +16,8 @@ import { ProductDetailView } from './views/ProductDetailView';
 import { AboutView } from './views/AboutView';
 import { ContactView } from './views/ContactView';
 import { DpiitDirectoryView } from './views/DpiitDirectoryView';
+import { SellerPartnerView } from './views/SellerPartnerView';
+import { TraditionalArtsView } from './views/TraditionalArtsView';
 import { WhatsAppWidget } from './components/WhatsAppWidget';
 import { PRODUCTS_DATA } from './data/products';
 import { STATES_DATA } from './data/states';
@@ -69,6 +71,11 @@ export default function App() {
       }
     }
 
+    if (activeRoute.includes('seller') || activeRoute.includes('partner')) {
+      setCurrentView('seller-partner');
+      return;
+    }
+
     if (activeRoute.includes('dpiit') || activeRoute.includes('directory')) {
       setCurrentView('dpiit-directory');
       return;
@@ -86,6 +93,11 @@ export default function App() {
 
     if (activeRoute.includes('artisans') || activeRoute.includes('makers')) {
       setCurrentView('artisans');
+      return;
+    }
+
+    if (activeRoute.includes('traditional-art') || activeRoute.includes('discipline') || activeRoute.includes('craft-categor')) {
+      setCurrentView('traditional-arts');
       return;
     }
 
@@ -202,6 +214,12 @@ export default function App() {
       }
       case 'about':
         document.title = 'About ODOP Hub — Preserving India’s District Traditions';
+        break;
+      case 'traditional-arts':
+        document.title = 'Traditional Disciplines & Media — ODOP Hub';
+        break;
+      case 'seller-partner':
+        document.title = 'Become an ODOP Hub Seller Partner — Showcase Indian Heritage Crafts';
         break;
       case 'dpiit-directory':
         document.title = 'DPIIT District ODOP Directory & State GI Registry — ODOP Hub';
@@ -364,6 +382,18 @@ export default function App() {
 
         {currentView === 'contact' && (
           <ContactView
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentView === 'seller-partner' && (
+          <SellerPartnerView
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentView === 'traditional-arts' && (
+          <TraditionalArtsView
             onNavigate={handleNavigate}
           />
         )}

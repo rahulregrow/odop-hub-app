@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, Compass, MapPin, Feather, Eye } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Compass, MapPin, Feather, Eye, ArrowRight } from 'lucide-react';
 
 export interface CarouselSlide {
   id: string;
@@ -139,26 +139,36 @@ export const ArtisanCarousel: React.FC<ArtisanCarouselProps> = ({ onNavigate }) 
   return (
     <section
       id="artisan-carousel-section"
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8"
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2"
       onMouseEnter={() => setIsPlaying(false)}
       onMouseLeave={() => setIsPlaying(true)}
     >
-      {/* Section Header: The Hands Behind the Heritage */}
-      <div className="mb-6 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4EDE2] text-[#8C4A27] text-xs font-semibold uppercase tracking-wider mb-2 border border-[#E8DEC8]">
-          <Feather className="w-3.5 h-3.5 text-[#B8502E]" />
-          <span>Living Heritage &bull; Human Craft Process</span>
+      {/* Section Header: The Hands Behind the Heritage (Compact) */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-4">
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#F4EDE2] text-[#8C4A27] text-[11px] font-semibold uppercase tracking-wider mb-1.5 border border-[#E8DEC8]">
+            <Feather className="w-3 h-3 text-[#B8502E]" />
+            <span>Living Heritage &bull; Human Craft Process</span>
+          </div>
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C241E] tracking-tight">
+            The Hands Behind the Heritage
+          </h2>
+          <p className="text-xs sm:text-sm text-[#6A5849] mt-1 font-light leading-relaxed">
+            Behind every piece of art is a master artisan carrying centuries of living tradition forward.
+          </p>
         </div>
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2C241E] tracking-tight">
-          The Hands Behind the Heritage
-        </h2>
-        <p className="text-base sm:text-lg text-[#6A5849] mt-2 font-light leading-relaxed">
-          Every craft has a story. Every story has a place. And behind every piece of art is a person who carries that tradition forward.
-        </p>
+
+        <button
+          onClick={() => onNavigate('artisans')}
+          className="self-start sm:self-end inline-flex items-center gap-1 text-xs font-semibold text-[#B8502E] hover:underline whitespace-nowrap"
+        >
+          <span>Meet All Artisans</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
       </div>
 
-      {/* Institutional Auto-Sliding Carousel Canvas */}
-      <div className="relative rounded-3xl overflow-hidden bg-[#1E1712] border border-[#3A2E24] shadow-xl aspect-[16/10] sm:aspect-[21/10] md:aspect-[24/11]">
+      {/* Institutional Auto-Sliding Carousel Canvas (Compact) */}
+      <div className="relative rounded-2xl overflow-hidden bg-[#1E1712] border border-[#3A2E24] shadow-md h-[270px] sm:h-[310px] md:h-[340px]">
         {/* Slide Image with Smooth Cross-Fade */}
         <div className="absolute inset-0">
           {ARTISAN_SLIDES.map((slide, idx) => (

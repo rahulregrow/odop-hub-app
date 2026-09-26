@@ -5,41 +5,49 @@ import { ArtisanProfile } from '../types';
 
 interface MeetTheArtisansSectionProps {
   onNavigate: (view: string, params?: { stateId?: string; productId?: string }) => void;
+  limit?: number;
+  compact?: boolean;
 }
 
-export const MeetTheArtisansSection: React.FC<MeetTheArtisansSectionProps> = ({ onNavigate }) => {
+export const MeetTheArtisansSection: React.FC<MeetTheArtisansSectionProps> = ({
+  onNavigate,
+  limit,
+  compact = false,
+}) => {
   const [selectedArtisan, setSelectedArtisan] = useState<ArtisanProfile | null>(null);
+
+  const displayedArtisans = limit ? ARTISANS_DATA.slice(0, limit) : ARTISANS_DATA;
 
   return (
     <section id="meet-the-artisans-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-[#FAF4ED] rounded-3xl border border-[#E8DFC2] p-8 sm:p-14 shadow-sm">
+      <div className={`bg-[#FAF4ED] rounded-3xl border border-[#E8DFC2] ${compact ? 'p-6 sm:p-8' : 'p-8 sm:p-14'} shadow-sm`}>
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-6 border-b border-[#DECFC0]">
+        <div className={`flex flex-col md:flex-row md:items-end justify-between gap-4 ${compact ? 'mb-6 pb-4' : 'mb-12 pb-6'} border-b border-[#DECFC0]`}>
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFE4D6] text-[#8C4A27] text-xs font-semibold uppercase tracking-wider mb-2 border border-[#DFD1BF]">
               <Award className="w-3.5 h-3.5 text-[#B8502E]" />
               <span>Living Treasures of India</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2C241E] tracking-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C241E] tracking-tight">
               Meet the Artisans
             </h2>
-            <p className="text-base sm:text-lg text-[#6A5849] mt-2 font-light leading-relaxed">
+            <p className="text-xs sm:text-sm md:text-base text-[#6A5849] mt-1.5 font-light leading-relaxed">
               The real story of Indian heritage is written by the people who continue to make it.
             </p>
           </div>
 
           <button
             onClick={() => onNavigate('artisans')}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#2C241E] text-white text-xs sm:text-sm font-semibold hover:bg-[#4A3D32] transition-colors whitespace-nowrap self-start md:self-auto"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#2C241E] text-white text-xs sm:text-sm font-semibold hover:bg-[#4A3D32] transition-colors whitespace-nowrap self-start md:self-auto"
           >
-            <span>View All Artisan Profiles</span>
+            <span>Meet More Artisans</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
         {/* Artisans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {ARTISANS_DATA.map((artisan) => (
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ${compact ? 'gap-6' : 'gap-8'}`}>
+          {displayedArtisans.map((artisan) => (
             <div
               key={artisan.id}
               className="bg-white rounded-2xl border border-[#E9E0D4] overflow-hidden shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow group"

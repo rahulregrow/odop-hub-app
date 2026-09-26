@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MessageCircle, Send, CheckCircle2, Copy, Check, MapPin, Sparkles, AlertCircle, Phone, ArrowRight } from 'lucide-react';
+import { Mail, MessageCircle, Send, CheckCircle2, Copy, Check, MapPin, Sparkles, AlertCircle, Phone, ArrowRight, Facebook, Instagram } from 'lucide-react';
 import { STATES_DATA } from '../data/states';
 
 interface ContactSectionProps {
@@ -32,7 +32,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ embedded = false
   const [copied, setCopied] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  const targetEmail = 'rahulranjandop@gmail.com';
+  const primaryEmail = 'samrat@odophub.com';
+  const secondaryEmail = 'rahulranjandop@gmail.com';
+  const targetEmail = `${primaryEmail},${secondaryEmail}`;
   const whatsappNumber = '919108282970';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     `Hello ODOP Hub, I would like to connect regarding traditional crafts and artisans.`
@@ -94,7 +96,7 @@ ${formData.message}
 ---
 Sent via ODOP Hub Discovery Platform (odophub.com)`
     );
-    return `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+    return `mailto:${primaryEmail},${secondaryEmail}?cc=${secondaryEmail}&subject=${subject}&body=${body}`;
   };
 
   const copyDetailsToClipboard = () => {
@@ -428,6 +430,40 @@ ${formData.message}`;
                 <p className="text-[11px] italic text-[#8C7662]">
                   &ldquo;Every traditional art carries more than a product. It carries a place, a community, a memory and generations of knowledge.&rdquo;
                 </p>
+              </div>
+            </div>
+
+            {/* Official Social Channels Card */}
+            <div className="bg-white rounded-2xl border border-[#E5DCD0] p-6 sm:p-7 shadow-sm space-y-3">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C4A27] block">
+                Official Social Channels
+              </span>
+              <p className="text-xs text-[#5A4D43] leading-relaxed">
+                Connect with ODOPHUB on Instagram and Facebook to discover daily features on master artisans, traditional disciplines, and geographical heritage across India.
+              </p>
+              <div className="pt-1 flex flex-wrap items-center gap-2.5">
+                <a
+                  id="contact-facebook-btn"
+                  href="https://www.facebook.com/share/19rtRNyFxM/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow ODOP Hub on Facebook"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#1877F2] hover:bg-[#166fe5] text-white text-xs font-semibold transition-all shadow-xs"
+                >
+                  <Facebook className="w-3.5 h-3.5 fill-current" />
+                  <span>Follow on Facebook</span>
+                </a>
+                <a
+                  id="contact-instagram-btn"
+                  href="https://www.instagram.com/odophub/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow ODOPHUB (@odophub) on Instagram"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-95 text-white text-xs font-semibold transition-all shadow-xs"
+                >
+                  <Instagram className="w-3.5 h-3.5" />
+                  <span>ODOPHUB (@odophub)</span>
+                </a>
               </div>
             </div>
           </div>
